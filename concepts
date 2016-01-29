@@ -11,7 +11,7 @@
 microscope <-meteor project root directory
 ├── client <----------------------stuff in here is only available to the client
 │   ├── main.html <-- loaded last because main.* loaded last
-│   └── main.jsi  <--loaded last
+│   └── main.js  <--loaded last
 ├── lib <------------------------stuff in here is available to client and server :Loaded FIRST
 ├── public <---------------------------client and server. Static assects (fonts, images, etc) go here
 └── server <----------------------stuff in here is only available to te server
@@ -22,8 +22,8 @@ microscope <-meteor project root directory
 add a templates directory...
 .
 ├── client
-│   ├── stylesheets <---- templates go in here!
-│   └── templates
+│   ├── stylesheets <-- css goes in here 
+│   └── templates <---- templates go in here!
 ├── lib
 ├── public
 └── server
