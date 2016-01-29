@@ -1,0 +1,4 @@
+
+$meteor add twbs:bootstrap //adds bootstrap to meteor project
+
+

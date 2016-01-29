@@ -1,0 +1,40 @@
+5 basic types of packages:
+    meteor-base ...core components
+    First-party
+    Local packages ...specific to your app. Live in /packages dir
+    Atmosphere ...custom, 3rd party packages available at online package repo (Atmosphere)
+    NPM packages are Node.js packages. Can't be included in package Meteor package list. Can be used in a Meteor local or atmoshpere package
+
+
+
+
+microscope <-meteor project root directory
+├── client <----------------------stuff in here is only available to the client
+│   ├── main.html <-- loaded last because main.* loaded last
+│   └── main.jsi  <--loaded last
+├── lib <------------------------stuff in here is available to client and server :Loaded FIRST
+├── public <---------------------------client and server. Static assects (fonts, images, etc) go here
+└── server <----------------------stuff in here is only available to te server
+|__.meteor <--special hidden files for under-the-hood meteor stuff.
+
+...everything else is loaded in alphabetical order by file name.
+
+add a templates directory...
+.
+├── client
+│   ├── stylesheets <---- templates go in here!
+│   └── templates
+├── lib
+├── public
+└── server
+
+NOTE: meteor will find all .js and .css files in the client folder. You do not need to wite inlude paths for these files! HURRAY!!!
+
+
+3 Kinds of template things from Handlebars...
+
+1.)Inclusions use the {{> templateName}} syntax, and simply tell Meteor to replace the inclusion with the template of the same name 
+2,)Expressions such as {{title}} either call a property of the current object, or the return value of a template helper as defined in the current template's manager 
+3.)block helpers are special tags that control the flow of the template, such as {{#each}}…{{/each}} or {{#if}}…{{/if}}
+
+
