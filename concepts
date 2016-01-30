@@ -37,4 +37,82 @@ NOTE: meteor will find all .js and .css files in the client folder. You do not n
 2,)Expressions such as {{title}} either call a property of the current object, or the return value of a template helper as defined in the current template's manager 
 3.)block helpers are special tags that control the flow of the template, such as {{#each}}…{{/each}} or {{#if}}…{{/if}}
 
+*******************************************START CH 4 *************************
+*******************************************Collections************************
+Since all client codes use collections, we'll but a collections directory in 
+/lib and put posts.js in that...
+.
+├── client
+│   ├── stylesheets
+│   └── templates
+│       └── posts
+├── lib
+│   └── collections
+│       └── posts.js <--code that defines the Posts collection
+├── public
+└── server
+
+post.js looks like this: 
+
+Posts = new Mongo.Collection('posts');
+
+NOTE: var Posts = ... would limit the scope of the Posts object to the current
+file. We want Posts to be available to the entire project, so we don't use var
+
+***3 Methods for apps to store data***
+-browser memory: data lost when you close window or tab
+-browser storage: 
+       --cookies
+       --browser's storage: in meteor: 'Local Storage'
+-server side Data Base (MongoDB is meteor's default)
+
+*** 4 kinds of Consoles ***
+-Bash terminal. Prompt: $
+-Browser console/Javascript Console
+-meteor shell. To access: from bash Terminal, type $meteor shell
+    --grants access to app's server-side code
+-mongo shell. To access: from bash Terminal, type $meteor mongo
+    --grants direct access to app's database
+
+*** Collections and miniMongo***
+-When you create a collection in the browser, it is a subset of the collection 
+on the server
+
+*** Publications ***
+-by default, all collections are available to all clients
+-to prevent this: *bash* $meteor remove autopublish
+-create a publications file in /server/ that creates a publish function
+code:
+Meteor.publish('publicationName', function(){
+   return **whatever you want published...usually a db cursor from .find()**
+});
+New folder structure:
+.
+├── client
+│   ├── main.js <-- add line Meteor.subscribe('publicationName')
+│   ├── stylesheets
+│   └── templates
+│       └── posts
+├── lib
+│   └── collections
+├── public
+└── server
+    └── publications.js <--add Meteor.publish('publicationName',function(){
+                                                          return *cursor*
+                                                          });
+******************************CH5: Routing***********************************
+.
+├── client        <-- note: removed main.js b/c subscriptions are handled by router.js now
+│   ├── stylesheets
+│   └── templates
+│       ├── application
+│       │   └── layout.html <--contains {{> yield }} for iron router. Defines layout for all pages in app
+│       └── posts
+├── lib
+│   ├── collections
+│   └── router.js <--configures router: determines layoutTemplate and handles collection subscriptions for different routes   
+├── public
+└── server
+
+
 

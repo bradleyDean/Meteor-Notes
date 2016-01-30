@@ -1,4 +1,8 @@
 
 $meteor add twbs:bootstrap //adds bootstrap to meteor project
+$meteor reset //erases database and resets project
+
+//By default, meteor shares each collection to each connected client. To stop this:
+$meteor remove autopublish 
 
 
